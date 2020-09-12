@@ -23,3 +23,14 @@
 hs_err_pid*
 /target/
 /.classpath
+
+# Intellij
+.idea/
+*.iml
+*.iws
+*.pmd
+
+# Eclipse
+.classpath
+.project
+.settings/
