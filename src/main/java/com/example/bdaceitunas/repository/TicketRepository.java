@@ -27,10 +27,10 @@ public interface TicketRepository extends JpaRepository<Ticket, Long>{
 			countQuery = "select count(ti) from Ticket ti")
 	public Page<Ticket> findAll(Pageable pag);
 	
-	@Query("SELECT new com.example.mvc.demo.dto.CampaignSummarizedDto(ca.id,ca.key,ca.description,SUM(ti.weight),AVG(ti.oilPercentage),SUM(ti.totalCost),AVG(ti.acidity)) FROM Ticket ti inner join ti.campaign ca group by ca.id,ca.key,ca.description")
+	@Query("SELECT new com.example.bdaceitunas.dto.CampaignSummarizedDto(ca.id,ca.key,ca.description,SUM(ti.weight),AVG(ti.oilPercentage),SUM(ti.totalCost),AVG(ti.acidity)) FROM Ticket ti inner join ti.campaign ca group by ca.id,ca.key,ca.description")
 	public List<CampaignSummarizedDto> getCampaignSummarized();
 	
-	@Query("SELECT new com.example.mvc.demo.dto.CampaignSummarizedDto(ow.id,ow.key,ow.name || ' ' || ow.givenName || ' ' || ow.motherName,SUM(ti.weight),AVG(ti.oilPercentage),SUM(ti.totalCost),AVG(ti.acidity)) "
+	@Query("SELECT new com.example.bdaceitunas.dto.CampaignSummarizedDto(ow.id,ow.key,ow.name || ' ' || ow.givenName || ' ' || ow.motherName,SUM(ti.weight),AVG(ti.oilPercentage),SUM(ti.totalCost),AVG(ti.acidity)) "
 			+ "FROM Ticket ti inner join ti.campaign ca "
 			+ "inner join ti.ownerTicket ow "
 			+ "where ca.id=:campaignId group by ow.id,ow.key,ow.name || ' ' || ow.givenName || ' ' || ow.motherName")

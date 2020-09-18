@@ -21,7 +21,7 @@ import io.swagger.annotations.ApiOperation;
 @RestController
 @RequestMapping("campaignsSummarized")
 public class CampaignSummarizedController {
-	
+
 	@Autowired
 	CampaignSummarizedServiceImpl campaignSummarizedServiceImpl;
 
@@ -29,7 +29,7 @@ public class CampaignSummarizedController {
 	public Collection<CampaignSummarizedDto> getCampaignSummarized() {
 		return campaignSummarizedServiceImpl.getCampaignSummarized();
 	}
-	
+
 	@RequestMapping(value="/byTicketOwner/{id}",method = RequestMethod.GET)
 	@ApiOperation(value = "Get a projection model by OwnerParcel", response = CampaignSummarizedDto.class)
 	public Collection<CampaignSummarizedDto> getCampaignSummarizedByTicketOwner(@PathVariable("id") Long campaignId) {

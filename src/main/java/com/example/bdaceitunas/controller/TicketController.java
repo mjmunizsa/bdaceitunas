@@ -8,9 +8,12 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.data.web.PageableDefault;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,11 +21,14 @@ import com.example.bdaceitunas.dto.TicketDto;
 import com.example.bdaceitunas.entity.Ticket;
 import com.example.bdaceitunas.service.TicketServiceImpl;
 
+import lombok.RequiredArgsConstructor;
+
 /**
  * @author mjmuniz
  *
  */
 @RestController
+@RequiredArgsConstructor
 public class TicketController {
 	
 	

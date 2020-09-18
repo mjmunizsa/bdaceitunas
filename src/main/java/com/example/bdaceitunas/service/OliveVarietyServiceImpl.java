@@ -14,14 +14,14 @@
 package com.example.bdaceitunas.service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
-import javax.transaction.Transactional;
-
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.example.bdaceitunas.dto.OliveVarietyDto;
 import com.example.bdaceitunas.entity.OliveVariety;
-import com.example.bdaceitunas.entity.Ticket;
 import com.example.bdaceitunas.repository.OliveVarietyRepository;
 
 /**
@@ -30,27 +30,24 @@ import com.example.bdaceitunas.repository.OliveVarietyRepository;
 @Service("oliveVarietyServiceImpl")
 public class OliveVarietyServiceImpl {
 
+	@Autowired
+	OliveVarietyRepository oliveVarietyRepository;
 
-  @Autowired
-  OliveVarietyRepository oliveVarietyRepository;
-  
-  public List<OliveVariety> findAll() {
-	  List<OliveVariety> oliveVarietyList = oliveVarietyRepository.findAll();
-//	  try {
-//		  
-//		  oliveVarietyList = oliveVarietyRepository.findAll();
-//			for (OliveVariety oliveVariety : oliveVarietyList) {
-//				for (Ticket ticket : oliveVariety.getTicketList()) {
-//					ticket.getCampaign().getDescription();
-//					ticket.getParcelLand().getParcelOwner().getName();
-//				}
-//				oliveVariety.getTicketList();
-//			}
-//	  } catch (Exception e) {
-//		  
-//	  }
-	return oliveVarietyList;
-  }
+	@Autowired
+	ModelMapper modelMapper;
 
-  
+	public List<OliveVarietyDto> findAll() {
+		List<OliveVariety> oliveVarietyList = oliveVarietyRepository.findAll();
+		return oliveVarietyList.stream().map(oli -> modelMapper.map(oli, OliveVarietyDto.class))
+				.collect(Collectors.toList());
+
+	}
+	
+	public OliveVarietyDto save(OliveVarietyDto oliveVarietyDto) {
+		OliveVariety oliveNew = modelMapper.map(oliveVarietyDto, OliveVariety.class);
+		oliveNew = oliveVarietyRepository.save(oliveNew);
+		return modelMapper.map(oliveNew, OliveVarietyDto.class);
+		
+	}
+
 }

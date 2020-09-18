@@ -1,5 +1,5 @@
 package com.example.bdaceitunas.health;
-//package com.example.mvc.demo.health;
+//package com.example.bdaceitunas.health;
 //
 //import org.springframework.boot.actuate.health.Health;
 //import org.springframework.boot.actuate.health.HealthIndicator;
