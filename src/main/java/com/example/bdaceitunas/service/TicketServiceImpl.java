@@ -25,12 +25,13 @@ import com.example.bdaceitunas.repository.TicketRepository;
  * Service to convert from stage tables entities to final tables entities
  */
 @Service("ticketServiceImpl")
-public class TicketServiceImpl {
+public class TicketServiceImpl implements TicketService {
 
 
   @Autowired
   TicketRepository ticketRepository;
   
+  @Override
   public Page<Ticket> findAll(Pageable pag) {
 	  Page<Ticket> ticketList = ticketRepository.findAll(pag);
 	  return ticketList;

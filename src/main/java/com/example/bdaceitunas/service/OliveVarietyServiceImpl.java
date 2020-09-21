@@ -28,7 +28,7 @@ import com.example.bdaceitunas.repository.OliveVarietyRepository;
  * Service to convert from stage tables entities to final tables entities
  */
 @Service("oliveVarietyServiceImpl")
-public class OliveVarietyServiceImpl {
+public class OliveVarietyServiceImpl implements OliveVarietyService {
 
 	@Autowired
 	OliveVarietyRepository oliveVarietyRepository;
@@ -36,6 +36,7 @@ public class OliveVarietyServiceImpl {
 	@Autowired
 	ModelMapper modelMapper;
 
+	@Override
 	public List<OliveVarietyDto> findAll() {
 		List<OliveVariety> oliveVarietyList = oliveVarietyRepository.findAll();
 		return oliveVarietyList.stream().map(oli -> modelMapper.map(oli, OliveVarietyDto.class))
@@ -43,6 +44,7 @@ public class OliveVarietyServiceImpl {
 
 	}
 	
+	@Override
 	public OliveVarietyDto save(OliveVarietyDto oliveVarietyDto) {
 		OliveVariety oliveNew = modelMapper.map(oliveVarietyDto, OliveVariety.class);
 		oliveNew = oliveVarietyRepository.save(oliveNew);

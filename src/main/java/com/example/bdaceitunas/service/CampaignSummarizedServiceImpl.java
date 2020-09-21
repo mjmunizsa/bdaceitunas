@@ -24,18 +24,20 @@ import com.example.bdaceitunas.repository.TicketRepository;
 /**
  * Service to convert from stage tables entities to final tables entities
  */
-@Service("campaignSummarizedServiceImpl")
-public class CampaignSummarizedServiceImpl {
+@Service("campaignSummarizedService")
+public class CampaignSummarizedServiceImpl implements CampaignSummarizedService {
 
 
   @Autowired
   TicketRepository ticketRepository;
   
+  @Override
   public List<CampaignSummarizedDto> getCampaignSummarized() {
 	  List<CampaignSummarizedDto> campaignSummarized = ticketRepository.getCampaignSummarized();
 	  return campaignSummarized;
   }
   
+  @Override
   public List<CampaignSummarizedDto> getCampaignSummarizedByTicketOwner(Long campaignId) {
 	  List<CampaignSummarizedDto> campaignSummarized = ticketRepository.getCampaignSummarizedByTicketOwner(campaignId);
 	  return campaignSummarized;
